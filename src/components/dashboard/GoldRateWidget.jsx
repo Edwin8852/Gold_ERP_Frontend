@@ -164,12 +164,10 @@ const GoldRateWidget = ({ compact = false }) => {
   // Fallback: liveRates slice if goldRate is not yet loaded
   const gold24k_raw = Number(goldRate?.gold24k || liveRates?.gold24k || 0);
 
-  // ⚠️  SAFETY: Always recompute 22K and 18K from the master 24K.
-  //    This guards against stale/mismatched values from the liveRate fallback.
-  //    Server already does this but we enforce it client-side too.
+  // Use the exact values from the backend since 18K has a market premium and isn't a pure mathematical ratio.
   const gold24k    = gold24k_raw;
-  const gold22k    = gold24k_raw > 0 ? parseFloat((gold24k_raw * (22 / 24)).toFixed(2)) : 0;
-  const gold18k    = gold24k_raw > 0 ? parseFloat((gold24k_raw * (18 / 24)).toFixed(2)) : 0;
+  const gold22k    = Number(goldRate?.gold22k || liveRates?.gold22k || 0) || (gold24k_raw > 0 ? parseFloat((gold24k_raw * (22 / 24)).toFixed(2)) : 0);
+  const gold18k    = Number(goldRate?.gold18k || liveRates?.gold18k || 0) || (gold24k_raw > 0 ? Math.round(gold24k_raw * 0.7691102) : 0);
   const silverRate = Number(goldRate?.silverRate || liveRates?.silver || 0);
   const updatedAt  = goldRate?.updatedAt || liveRates?.updatedAt;
   const source     = 'Chennai Market Rates';  // Always Chennai
