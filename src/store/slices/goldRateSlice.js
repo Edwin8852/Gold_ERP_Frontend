@@ -25,8 +25,8 @@ export const fetchLatestGoldRate = createAsyncThunk(
   'goldRate/fetchLatest',
   async (_, { rejectWithValue }) => {
     try {
-      const res = await getLatestGoldRate();   // { city, gold22k, ... }
-      if (!res || !res.city) throw new Error('Invalid response from /gold-rate/latest');
+      const res = await getLatestGoldRate();   // { city, gold22k, gold24k, ... }
+      if (!res || (!res.gold24k && !res.gold22k)) throw new Error('Invalid response from /gold-rate/latest');
       return res;
     } catch (error) {
       console.error('[goldRateSlice] fetchLatestGoldRate failed:', error.message);
@@ -88,6 +88,7 @@ const goldRateSlice = createSlice({
 
         // Normalise into a unified shape
         const normalised = {
+          city:       payload.city       || 'Chennai',
           gold18k:    Number(payload.gold18k    || 0),
           gold22k:    Number(payload.gold22k    || 0),
           gold24k:    Number(payload.gold24k    || 0),
