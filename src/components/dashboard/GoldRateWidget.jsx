@@ -195,7 +195,7 @@ const GoldRateWidget = ({ compact = false }) => {
       console.log(`  Market City : ${city}`);
       console.log(`  24K Gold  : ₹${gold24k} /gram`);
       console.log(`  22K Gold  : ₹${gold22k} /gram  [24K × 22/24 = ${(gold24k * 22 / 24).toFixed(2)}]`);
-      console.log(`  18K Gold  : ₹${gold18k} /gram  [24K × 18/24 = ${(gold24k * 18 / 24).toFixed(2)}]`);
+      console.log(`  18K Gold  : ₹${gold18k} /gram  [Market Premium Rate]`);
       console.log(`  Silver    : ₹${silverRate} /gram`);
       console.log(`  Source    : ${source}`);
       console.log(`  Updated   : ${formatIST(updatedAt)}`);
@@ -333,7 +333,7 @@ const GoldRateWidget = ({ compact = false }) => {
         />
         <RateCard
           label="18K Gold"
-          sublabel="24K × 18/24"
+          sublabel="Market Rate"
           value={gold18k}
           change={changes.gold18k.change}
           changePercent={changes.gold18k.pct}
