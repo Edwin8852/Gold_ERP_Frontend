@@ -129,7 +129,7 @@ const Settings = () => {
   const sessionInfo = {
     device: 'Chrome on Windows',
     ip: '103.xxx.xxx.xxx',
-    location: 'Coimbatore, TN, India',
+    location: 'Chennai, TN, India',
     lastLogin: new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' }),
   };
 
@@ -647,9 +647,9 @@ const Settings = () => {
           <p className="text-xs font-black text-gray-400 uppercase tracking-widest mb-3">Recent Login History</p>
           <div className="space-y-2">
             {[
-              { device: 'Chrome on Windows', time: sessionInfo.lastLogin, location: 'Coimbatore, TN', status: 'success' },
-              { device: 'Chrome on Windows', time: 'Yesterday, 09:12 AM', location: 'Coimbatore, TN', status: 'success' },
-              { device: 'Firefox on Windows', time: '2 days ago, 03:45 PM', location: 'Coimbatore, TN', status: 'success' },
+              { device: 'Chrome on Windows', time: sessionInfo.lastLogin, location: 'Chennai, TN', status: 'success' },
+              { device: 'Chrome on Windows', time: 'Yesterday, 09:12 AM', location: 'Chennai, TN', status: 'success' },
+              { device: 'Firefox on Windows', time: '2 days ago, 03:45 PM', location: 'Chennai, TN', status: 'success' },
             ].map((session, i) => (
               <div key={i} className="flex items-center justify-between p-4 rounded-2xl bg-gray-50 dark:bg-dark-card hover:bg-gray-100 dark:hover:bg-dark-surface/60 transition-all">
                 <div className="flex items-center gap-3">

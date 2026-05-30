@@ -172,8 +172,8 @@ const GoldRateWidget = ({ compact = false }) => {
   const gold18k    = gold24k_raw > 0 ? parseFloat((gold24k_raw * (18 / 24)).toFixed(2)) : 0;
   const silverRate = Number(goldRate?.silverRate || liveRates?.silver || 0);
   const updatedAt  = goldRate?.updatedAt || liveRates?.updatedAt;
-  const source     = goldRate?.source    || liveRates?.source || '—';
-  const city       = goldRate?.city      || liveRates?.city || 'Chennai';
+  const source     = 'Chennai Market Rates';  // Always Chennai
+  const city       = 'Chennai';               // Always Chennai
   const isFallback = goldRate?.isFallback || false;
   const rateDate   = goldRate?.rateDate;
   const isToday    = rateDate ? rateDate === getTodayIST() : true;
@@ -288,7 +288,7 @@ const GoldRateWidget = ({ compact = false }) => {
         </div>
       </div>
 
-      {/* ── Fallback Warning Banner ─────────────────────────────────────── */}
+      {/* ── Unavailable Banner ───────────────────────────────────────────── */}
       <AnimatePresence>
         {(isFallback || !isToday) && (
           <motion.div
@@ -300,9 +300,8 @@ const GoldRateWidget = ({ compact = false }) => {
           >
             <AlertTriangle size={13} className="text-amber-400 flex-shrink-0" />
             <p className="text-[10px] text-amber-300 font-medium">
-              {rateDate
-                ? `Today's rate unavailable. Showing last known rate from ${rateDate}.`
-                : "Rate source offline. Displaying last valid database record."}
+              Chennai Rate Temporarily Unavailable
+              {rateDate && ` — Showing last known Chennai rate from ${rateDate}.`}
             </p>
           </motion.div>
         )}
